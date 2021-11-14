@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class DocumnentStorageProperties {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "document_id")
     private Integer documentId;
     @Column(name = "user_id")

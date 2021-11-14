@@ -1,7 +1,9 @@
 package com.app.rmlprototype.rest;
 
+import com.app.rmlprototype.entity.MLPrediction;
 import com.app.rmlprototype.entity.UploadFileResponse;
 import com.app.rmlprototype.service.DocumentStorageService;
+import com.app.rmlprototype.service.MLPredictionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -13,6 +15,7 @@ import org.springframework.core.io.Resource;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/document")
@@ -20,6 +23,9 @@ public class DocumentRestController {
 
     @Autowired
     private DocumentStorageService documneStorageService;
+
+    @Autowired
+    private MLPredictionService mlPredictionService;
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file,
@@ -63,6 +69,21 @@ public class DocumentRestController {
         } else {
             return ResponseEntity.notFound().build();
         }
-       }
+    }
+
+    @GetMapping("/getAllDocuments")
+    public List<MLPrediction> getALlDocuments(){
+        return mlPredictionService.findALl();
+    }
+
+    @GetMapping("/getDocumentById/{documentId}")
+    public MLPrediction getDocumentById(@PathVariable int theId){
+        return mlPredictionService.getDocumentById(theId);
+    }
+
+    @GetMapping("/getBySpeciality/{speciality}")
+    public List<MLPrediction> getBySpeciality(@PathVariable String speciality){
+        return mlPredictionService.findDocumentBySpeciality(speciality);
+    }
 
 }

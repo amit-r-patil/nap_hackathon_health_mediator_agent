@@ -1,8 +1,10 @@
-
 package com.app.rmlprototype.rest;
 
+import com.app.rmlprototype.data.MessageTemplates;
 import com.app.rmlprototype.entity.Doctor;
 import com.app.rmlprototype.service.DoctorService;
+import com.app.rmlprototype.util.RapidAPIClient;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -68,6 +70,10 @@ public class DoctorRestController {
     @PostMapping("/addDoctor")
     public Doctor addDoc(@RequestBody Doctor doctor){
         doctorService.save(doctor);
+
+        RapidAPIClient.sendSMS(doctor.getContactNumber(), MessageTemplates.getDoctorRegistartionSMS(doctor.getDocName()));
+        RapidAPIClient.sendEmail(doctor.getEmail(), doctor.getDocName(), MessageTemplates.REGISTRATION_SUCCESS_EMAIL_SUBJECT, MessageTemplates.getDoctorRegistartionEmail(doctor.getDocName()), null);
+
         return doctor;
     }
 

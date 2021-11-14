@@ -1,5 +1,7 @@
 package com.app.rmlprototype.entity;
 
+import java.sql.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -34,6 +36,50 @@ public class Patient {
 
     @Column(name = "password")
     public String password;
+
+    @Column(name = "gender")
+    public String gender;
+
+    @Column(name = "date_of_birth")
+    public Date dateOfBirth;
+
+    @Column(name = "height")
+    public float height;
+
+    @Column(name= "weight")
+    public float weight;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
 
     public String getUsername() {
         return username;

@@ -1,8 +1,10 @@
 package com.app.rmlprototype.rest;
 
+import com.app.rmlprototype.data.MessageTemplates;
 import com.app.rmlprototype.entity.DiagnosisCenter;
-import com.app.rmlprototype.entity.Doctor;
 import com.app.rmlprototype.service.DiagnosisCenterSevice;
+import com.app.rmlprototype.util.RapidAPIClient;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +57,10 @@ public class DiagnosisCenterRestController {
     @PostMapping("/addCenter")
     public DiagnosisCenter addDiagnosisCenter(@RequestBody DiagnosisCenter diagnosisCenter){
         diagnosisCenterSevice.save(diagnosisCenter);
+
+        RapidAPIClient.sendSMS(diagnosisCenter.getContactNumber(), MessageTemplates.getDiagnosisCenterRegistartionSMS(diagnosisCenter.getName()));
+        RapidAPIClient.sendEmail(diagnosisCenter.getEmail(), diagnosisCenter.getName(), MessageTemplates.REGISTRATION_SUCCESS_EMAIL_SUBJECT, MessageTemplates.getDiagnosisCenterRegistartionEmail(diagnosisCenter.getName()), null);
+
         return diagnosisCenter;
     }
 

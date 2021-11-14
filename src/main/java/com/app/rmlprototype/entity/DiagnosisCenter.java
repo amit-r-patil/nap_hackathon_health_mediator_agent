@@ -23,6 +23,30 @@ public class DiagnosisCenter {
     @Column(name = "password")
     public String password;
 
+    @Column(name = "address")
+    public String address;
+
+    @Column(name = "lat")
+    public float lat;
+
+    @Column(name="lon")
+    public float lon;
+
+    @Column(name="contact_number")
+    public String contactNumber;
+
+    @Column(name="email")
+    public String email;
+
+    @Column(name="days_available")
+    public String daysAvailable;
+
+    @Column(name="time_available")
+    public String timeAvailable;
+
+    @Column(name="services")
+    public String services;
+
     public String getUsername() {
         return username;
     }
@@ -61,6 +85,72 @@ public class DiagnosisCenter {
 
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
+    }
+
+
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public float getLon() {
+        return lon;
+    }
+
+    public void setLon(float lon) {
+        this.lon = lon;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDaysAvailable() {
+        return daysAvailable;
+    }
+
+    public void setDaysAvailable(String daysAvailable) {
+        this.daysAvailable = daysAvailable;
+    }
+
+    public String getTimeAvailable() {
+        return timeAvailable;
+    }
+
+    public void setTimeAvailable(String timeAvailable) {
+        this.timeAvailable = timeAvailable;
+    }
+
+    public String getServices() {
+        return services;
+    }
+
+    public void setServices(String services) {
+        this.services = services;
     }
 
     @Override
