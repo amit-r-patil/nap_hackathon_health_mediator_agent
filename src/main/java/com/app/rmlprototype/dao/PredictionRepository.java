@@ -3,9 +3,11 @@ package com.app.rmlprototype.dao;
 import com.app.rmlprototype.entity.MLPrediction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface PredictionRepository extends JpaRepository<MLPrediction,Integer> {
 
     @Query("Select a from MLPrediction a where a.docId = ?1")
