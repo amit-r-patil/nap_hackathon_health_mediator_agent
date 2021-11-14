@@ -32,4 +32,9 @@ public class MLPredictionServiceImp implements MLPredictionService{
     public List<MLPrediction> getInfoByDocumentId(int[] docIds) {
         return predictionRepository.getInfoByDocumentId(docIds);
     }
+
+    @Override
+    public void save(MLPrediction mlPrediction) {
+        predictionRepository.save(mlPrediction);
+    }
 }

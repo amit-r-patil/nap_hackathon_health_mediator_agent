@@ -1,10 +1,13 @@
 package com.app.rmlprototype.rest;
 
+import com.app.rmlprototype.data.MessageTemplates;
+import com.app.rmlprototype.entity.Doctor;
 import com.app.rmlprototype.entity.DocumnentStorageProperties;
 import com.app.rmlprototype.entity.MLPrediction;
 import com.app.rmlprototype.entity.UploadFileResponse;
 import com.app.rmlprototype.service.DocumentStorageService;
 import com.app.rmlprototype.service.MLPredictionService;
+import com.app.rmlprototype.util.RapidAPIClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -87,10 +90,10 @@ public class DocumentRestController {
         return mlPredictionService.findDocumentBySpeciality(speciality);
     }
 
-    @GetMapping("/recommandations")
-    public List<MLPrediction> getByPrediction(){
+    @GetMapping("/recommandations/{userId}")
+    public List<MLPrediction> getByPrediction(@PathVariable int theId){
 
-        List<DocumnentStorageProperties> getDocuments = documneStorageService.getAllDocument();
+        List<DocumnentStorageProperties> getDocuments = documneStorageService.getAllDocumentById(theId);
         int[] arrId = new int[getDocuments.size()];
         int i =0;
         for(DocumnentStorageProperties doc : getDocuments){
@@ -98,6 +101,11 @@ public class DocumentRestController {
             i++;
         }
         return mlPredictionService.getInfoByDocumentId(arrId);
+    }
+
+    @PostMapping("/addInfoInPrection")
+    public void addPrediction(@RequestBody MLPrediction mlPrediction){
+        mlPredictionService.save(mlPrediction);
     }
 
 }

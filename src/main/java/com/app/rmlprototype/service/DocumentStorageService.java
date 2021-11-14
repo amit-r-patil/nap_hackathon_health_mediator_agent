@@ -105,7 +105,11 @@ public class DocumentStorageService {
         return docStorageRepo.getOne(id);
     }
 
-    public List<DocumnentStorageProperties> getAllDocument(){
+    public List<DocumnentStorageProperties> getAllDocumentById(int id){
+        return docStorageRepo.getDocumentByUserId(id);
+    }
+
+    public List<DocumnentStorageProperties> getAllDocument() {
         return docStorageRepo.findAll();
     }
 

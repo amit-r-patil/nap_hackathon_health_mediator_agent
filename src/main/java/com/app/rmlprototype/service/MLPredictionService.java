@@ -1,5 +1,6 @@
 package com.app.rmlprototype.service;
 
+import com.app.rmlprototype.entity.Doctor;
 import com.app.rmlprototype.entity.MLPrediction;
 
 import java.util.List;
@@ -12,5 +13,7 @@ public interface MLPredictionService {
     public MLPrediction getDocumentById(int id);
 
     public List<MLPrediction> getInfoByDocumentId(int[] docIds);
+
+    public void save(MLPrediction mlPrediction);
 
 }
