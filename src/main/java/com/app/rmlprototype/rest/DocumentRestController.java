@@ -1,12 +1,10 @@
 package com.app.rmlprototype.rest;
 
 import com.app.rmlprototype.data.MessageTemplates;
-import com.app.rmlprototype.entity.Doctor;
-import com.app.rmlprototype.entity.DocumnentStorageProperties;
-import com.app.rmlprototype.entity.MLPrediction;
-import com.app.rmlprototype.entity.UploadFileResponse;
+import com.app.rmlprototype.entity.*;
 import com.app.rmlprototype.service.DocumentStorageService;
 import com.app.rmlprototype.service.MLPredictionService;
+import com.app.rmlprototype.service.PatientService;
 import com.app.rmlprototype.util.RapidAPIClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -32,11 +30,20 @@ public class DocumentRestController {
     @Autowired
     private MLPredictionService mlPredictionService;
 
+    @Autowired
+    private PatientService patientService;
+
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file,
                                          @RequestParam("userId") Integer UserId,
                                          @RequestParam("docType") String docType) {
         String fileName = documneStorageService.storeFile(file, UserId, docType);
+
+        Patient patient = patientService.findById(UserId);
+
+        //Hardcoded image since image url is not public as system is not deployed
+        RapidAPIClient.sendWhatsAppDocument(patient.getContactNumber(), "https://i.postimg.cc/C19KsW-gd/fracture1.jpg", "Fractured bone detected", "fractured_bone.jpg");
+
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(fileName)

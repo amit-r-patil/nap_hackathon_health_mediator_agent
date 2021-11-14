@@ -27,7 +27,7 @@ public class RapidAPIClient {
 
     private static String RAPID_EMAIL_URL = "https://rapidemail.rmlconnect.net/v1.0/messages/sendMail";
 
-    private static String RAPID_WHATS_APP_URL = "";
+    private static String RAPID_WHATS_APP_URL = "https://rapidapi.rmlconnect.net/wbm/v1/message";
 
     private static final String USER_AGENT = "Mozilla/5.0";
 
@@ -174,12 +174,63 @@ public class RapidAPIClient {
         return resultResponse;
     }
 
+    public static String sendWhatsAppDocument(String toNumber, String fileUrl, String caption, String filename)
+    {
+        String resultResponse = "Sorry.. Failed to send Whats App Document.";
+
+        try {
+            String fileType = "document";
+            if(filename.endsWith(".jpg") || filename.endsWith(".jepg") || filename.endsWith(".png")) {
+                fileType = "image";
+            }
+
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            HttpPost postRequest = new HttpPost(RAPID_WHATS_APP_URL);
+
+            Map<String, Object> inputMap = new HashMap<String, Object>();
+            inputMap.put("phone", toNumber);
+            Map<String, String> mediaMap = new HashMap<String, String>();
+            mediaMap.put("type", fileType);
+            mediaMap.put("url", fileUrl);
+            mediaMap.put("caption", caption);
+            mediaMap.put("file", filename);
+
+            inputMap.put("media", mediaMap);
+
+
+            JSONObject json = new JSONObject(inputMap);
+            StringEntity input = new StringEntity(json.toString());
+            //StringEntity input = new StringEntity(inputMap.toString());
+            input.setContentType("application/json");
+            postRequest.setEntity(input);
+
+            postRequest.setHeader("Authorization", "617bf204245383001100f813");
+            HttpResponse response = httpClient.execute(postRequest);
+
+
+            if (response.getStatusLine().getStatusCode() == 202) {
+                resultResponse = "Whats App Document sent successfully to " + toNumber;
+            }
+
+            httpClient.getConnectionManager().shutdown();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(resultResponse);
+        return resultResponse;
+    }
+
     public static void main(String args[]) {
         //System.out.println(RapidAPIClient.sendSMS("+919226161589", "Hello Again Test message...1"));
-        Map<String, String> attachments = new HashMap<String, String>();
-        attachments.put("apc.jpg", "/Users/amipatil/Downloads/3.jpg");
-        attachments.put("xyz.pdf", "/Users/amipatil/Downloads/myfile.pdf");
-        sendEmail("patil1995amit@gmail.com", "Amit P.1", "Hello Subject : Testing from Java 1",
-                "Hello Body : Testing from Java 1", null);
+        //Map<String, String> attachments = new HashMap<String, String>();
+        //attachments.put("apc.jpg", "/Users/amipatil/Downloads/3.jpg");
+        //attachments.put("xyz.pdf", "/Users/amipatil/Downloads/myfile.pdf");
+        //sendEmail("patil1995amit@gmail.com", "Amit P.1", "Hello Subject : Testing from Java 1",
+        //"Hello Body : Testing from Java 1", null);
+        RapidAPIClient.sendWhatsAppDocument("+919226161589", "https://i.postimg.cc/C19KsW-gd/fracture1.jpg", "Fractured bone detected", "fractured_bone.jpg");
+
     }
 }
