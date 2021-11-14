@@ -21,5 +21,5 @@ public interface PatientService {
 
     public void deleteByPatientIdProof(String idProofNumber);
 
-    public boolean authenticateUser(String username,String password);
+    public Patient authenticateUser(String username,String password);
 }

@@ -22,5 +22,5 @@ public interface DoctorService {
 
     public void deleteByDocRegistrationNumber(String registrationNumber);
 
-    public boolean authenticateUser(String username,String password);
+    public Doctor authenticateUser(String username,String password);
 }

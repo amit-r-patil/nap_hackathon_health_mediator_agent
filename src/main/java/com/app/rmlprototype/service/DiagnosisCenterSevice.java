@@ -20,6 +20,6 @@ public interface DiagnosisCenterSevice {
 
     public void deleteByRegistrationNumber(String registrationNumber);
 
-    public boolean authenticateUser(String username,String password);
+    public DiagnosisCenter authenticateUser(String username,String password);
 
 }

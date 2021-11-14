@@ -58,12 +58,9 @@ public class DiagnosisCenterSeviceImpl implements DiagnosisCenterSevice {
     }
 
     @Override
-    public boolean authenticateUser(String username, String password) {
+    public DiagnosisCenter authenticateUser(String username, String password) {
         DiagnosisCenter theDiagnosisCenter = diagnosisRepository.authenticateUser(username,password);;
-        if (theDiagnosisCenter!=null) {
-           return true;
-        } else {
-            return false;
-        }
+
+        return theDiagnosisCenter;
     }
 }

@@ -21,7 +21,7 @@ public class PatientRestController {
     }*/
 
     @GetMapping("/authenticatePatient/{username}/{password}")
-    public boolean authenticateUser(@PathVariable String username, @PathVariable String password){
+    public Patient authenticateUser(@PathVariable String username, @PathVariable String password){
         return patientService.authenticateUser(username,password);
     }
 

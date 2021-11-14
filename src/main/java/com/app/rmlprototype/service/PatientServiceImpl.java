@@ -64,12 +64,9 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public boolean authenticateUser(String username, String password) {
+    public Patient authenticateUser(String username, String password) {
         Patient patient = patientRepository.authenticateUser(username,password);;
-        if (patient!=null) {
-            return true;
-        } else {
-            return false;
-        }
+
+        return patient;
     }
 }

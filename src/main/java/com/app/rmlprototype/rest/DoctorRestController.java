@@ -7,6 +7,8 @@ import com.app.rmlprototype.util.RapidAPIClient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.print.Doc;
 import java.util.List;
 
 @RestController
@@ -26,7 +28,7 @@ public class DoctorRestController {
     }
 
     @GetMapping("/authenticateDoctor/{username}/{password}")
-    public boolean authenticateUser(@PathVariable String username, @PathVariable String password){
+    public Doctor authenticateUser(@PathVariable String username, @PathVariable String password){
         return doctorService.authenticateUser(username,password);
     }
 

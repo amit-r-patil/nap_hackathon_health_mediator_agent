@@ -22,7 +22,7 @@ public class DiagnosisCenterRestController {
     }*/
 
     @GetMapping("/authenticateCenter/{username}/{password}")
-    public boolean authenticateUser(@PathVariable String username, @PathVariable String password){
+    public DiagnosisCenter authenticateUser(@PathVariable String username, @PathVariable String password){
         return diagnosisCenterSevice.authenticateUser(username,password);
     }
 

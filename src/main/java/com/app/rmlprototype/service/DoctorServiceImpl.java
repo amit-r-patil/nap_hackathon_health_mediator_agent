@@ -63,12 +63,9 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
     @Override
-    public boolean authenticateUser(String username, String password) {
+    public Doctor authenticateUser(String username, String password) {
         Doctor doctor = doctorRepository.authenticateUser(username,password);;
-        if (doctor!=null) {
-            return true;
-        } else {
-            return false;
-        }
+
+        return doctor;
     }
 }
