@@ -28,10 +28,10 @@ public class MLPredictionServiceImp implements MLPredictionService{
         return predictionRepository.getReportById(id);
     }
 
-    @Override
+    /*@Override
     public List<MLPrediction> getInfoByDocumentId(List<Integer> docIds) {
         return predictionRepository.getInfoByDocumentId(docIds);
-    }
+    }*/
 
     @Override
     public void save(MLPrediction mlPrediction) {

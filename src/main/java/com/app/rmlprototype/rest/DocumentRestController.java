@@ -91,7 +91,7 @@ public class DocumentRestController {
         return mlPredictionService.findDocumentBySpeciality(speciality);
     }
 
-    @GetMapping("/recommandations/{userId}")
+    /*@GetMapping("/recommandations/{userId}")
     public List<MLPrediction> getByPrediction(@PathVariable int theId){
 
         List<DocumnentStorageProperties> getDocuments = documneStorageService.getAllDocumentById(theId);
@@ -104,7 +104,7 @@ public class DocumentRestController {
 
         List<Integer> list = Arrays.asList(arrId);
         return mlPredictionService.getInfoByDocumentId(list);
-    }
+    }*/
 
     @PostMapping("/addInfoInPrection")
     public void addPrediction(@RequestBody MLPrediction mlPrediction){
