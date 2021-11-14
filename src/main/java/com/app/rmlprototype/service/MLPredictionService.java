@@ -11,4 +11,6 @@ public interface MLPredictionService {
 
     public MLPrediction getDocumentById(int id);
 
+    public List<MLPrediction> getInfoByDocumentId(int[] docIds);
+
 }

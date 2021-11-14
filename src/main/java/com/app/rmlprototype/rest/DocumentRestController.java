@@ -1,5 +1,6 @@
 package com.app.rmlprototype.rest;
 
+import com.app.rmlprototype.entity.DocumnentStorageProperties;
 import com.app.rmlprototype.entity.MLPrediction;
 import com.app.rmlprototype.entity.UploadFileResponse;
 import com.app.rmlprototype.service.DocumentStorageService;
@@ -72,18 +73,31 @@ public class DocumentRestController {
     }
 
     @GetMapping("/getAllDocuments")
-    public List<MLPrediction> getALlDocuments(){
-        return mlPredictionService.findALl();
+    public List<DocumnentStorageProperties> getALlDocuments(){
+        return documneStorageService.getAllDocument();
     }
 
     @GetMapping("/getDocumentById/{documentId}")
-    public MLPrediction getDocumentById(@PathVariable int theId){
-        return mlPredictionService.getDocumentById(theId);
+    public DocumnentStorageProperties getDocumentById(@PathVariable int theId){
+        return documneStorageService.getDocumentOnId(theId);
     }
 
     @GetMapping("/getBySpeciality/{speciality}")
     public List<MLPrediction> getBySpeciality(@PathVariable String speciality){
         return mlPredictionService.findDocumentBySpeciality(speciality);
+    }
+
+    @GetMapping("/recommandations")
+    public List<MLPrediction> getByPrediction(){
+
+        List<DocumnentStorageProperties> getDocuments = documneStorageService.getAllDocument();
+        int[] arrId = new int[getDocuments.size()];
+        int i =0;
+        for(DocumnentStorageProperties doc : getDocuments){
+            arrId[i] = doc.getDocumentId();
+            i++;
+        }
+        return mlPredictionService.getInfoByDocumentId(arrId);
     }
 
 }

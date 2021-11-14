@@ -12,4 +12,5 @@ public interface DocumentStoragePropertiesRepo extends JpaRepository<DocumnentSt
     @Query("Select fileName from DocumnentStorageProperties a where a.UserId = ?1 and a.documentType = ?2")
     String getUploadDocumnetPath(Integer userId, String docType);
 
+
 }

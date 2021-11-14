@@ -15,6 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
+
 import org.springframework.core.io.Resource;
 
 @Service
@@ -97,7 +99,14 @@ public class DocumentStorageService {
 
     public String getDocumentName(Integer userId, String docType) {
         return docStorageRepo.getUploadDocumnetPath(userId, docType);
+    }
 
+    public DocumnentStorageProperties getDocumentOnId(int id){
+        return docStorageRepo.getOne(id);
+    }
+
+    public List<DocumnentStorageProperties> getAllDocument(){
+        return docStorageRepo.findAll();
     }
 
 }
