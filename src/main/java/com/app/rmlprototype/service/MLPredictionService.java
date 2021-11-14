@@ -12,7 +12,7 @@ public interface MLPredictionService {
 
     public MLPrediction getDocumentById(int id);
 
-    public List<MLPrediction> getInfoByDocumentId(int[] docIds);
+    public List<MLPrediction> getInfoByDocumentId(List<Integer> docIds);
 
     public void save(MLPrediction mlPrediction);
 

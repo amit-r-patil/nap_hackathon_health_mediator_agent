@@ -29,7 +29,7 @@ public class MLPredictionServiceImp implements MLPredictionService{
     }
 
     @Override
-    public List<MLPrediction> getInfoByDocumentId(int[] docIds) {
+    public List<MLPrediction> getInfoByDocumentId(List<Integer> docIds) {
         return predictionRepository.getInfoByDocumentId(docIds);
     }
 

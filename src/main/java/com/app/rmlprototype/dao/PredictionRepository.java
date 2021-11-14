@@ -17,6 +17,7 @@ public interface PredictionRepository extends JpaRepository<MLPrediction,Integer
     public List<MLPrediction> getAllBySpeciality(String speciality);
 
     @Query("SELECT a FROM MLPrediction a WHERE a.docId in  %?1")
-    public List<MLPrediction> getInfoByDocumentId(int[] ids);
+    public List<MLPrediction> getInfoByDocumentId(List<Integer> ids);
+
 
 }

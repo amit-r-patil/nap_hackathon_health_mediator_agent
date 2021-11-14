@@ -19,6 +19,7 @@ import org.springframework.core.io.Resource;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -94,13 +95,15 @@ public class DocumentRestController {
     public List<MLPrediction> getByPrediction(@PathVariable int theId){
 
         List<DocumnentStorageProperties> getDocuments = documneStorageService.getAllDocumentById(theId);
-        int[] arrId = new int[getDocuments.size()];
+        Integer[] arrId = new Integer[getDocuments.size()];
         int i =0;
         for(DocumnentStorageProperties doc : getDocuments){
             arrId[i] = doc.getDocumentId();
             i++;
         }
-        return mlPredictionService.getInfoByDocumentId(arrId);
+
+        List<Integer> list = Arrays.asList(arrId);
+        return mlPredictionService.getInfoByDocumentId(list);
     }
 
     @PostMapping("/addInfoInPrection")
