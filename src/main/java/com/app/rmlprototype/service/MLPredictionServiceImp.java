@@ -3,9 +3,11 @@ package com.app.rmlprototype.service;
 import com.app.rmlprototype.dao.PredictionRepository;
 import com.app.rmlprototype.entity.MLPrediction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MLPredictionServiceImp implements MLPredictionService{
 
     @Autowired
